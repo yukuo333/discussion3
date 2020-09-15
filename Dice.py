@@ -9,22 +9,35 @@ class Dice:
     # it sets the list that tracks the rolls to the empty list (instance variable)
     def __init__(self, num_sides = 6):
         self.num_sides = num_sides
-        pass
+        self.rolls = []
 
     # create the __str__ method
     # it returns "Last roll: value" where value is the last value in the list that tracks the rolls
 
+    def __str__(self):
+        return 'Last roll: ' + str(self.rolls[-1])
 
     # create the roll method
     # it randomly picks a value from 1 to the number of sides this dice object has
     # it adds that value to the end of the list that tracks all the rolls
     # it returns the value
-
+    
+    def roll(self):
+        const = random.randint(1,self.num_sides)
+        self.rolls.append(const)
+        return const
 
     # BONUS
     # create the print_count_for_num method
     # it will count how many times the passed number has been rolled and print 
     # number was rolled x times - where number is the number and x is the count
+
+    def print_count_for_num(self,x):
+        count_for_num = 0
+        for index in self.rolls:
+            if index == x:
+                count_for_num += 1
+        print('Rolled ' + str(x) + " " + str(count_for_num) + ' times')
 
 
 # main function
@@ -54,7 +67,7 @@ def main():
 
     # BONUS quiz
     # Print accumulation
-    #six_sided.print_count_for_num(3)
+    six_sided.print_count_for_num(3)
 
 if __name__ == "__main__":
     main()
